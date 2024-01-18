@@ -17,14 +17,16 @@ class BarangController extends Controller
     
     public function index(Request $request)
     {
-        $barang = Barang::when($request->input('kode_barang'), function ($query, $kode_barang) {
-            return $query->where('kode_barang', 'like', '%' . $kode_barang . '%');
-        })
-        ->select('id', 'kode_barang', 'nama_barang', 'satuan', 'quantity')
-        ->orderBy('id', 'desc')
-        ->paginate(10);
+        $query = Barang::query();
+        if ($request->has('name')) {
+            $query->where('kode_barang', 'like', '%' . $request->input('name') . '%');
+        }
+
+        $barang = $query->paginate(10)->withQueryString();
+     
         return view('pages.barang.index', compact('barang'));
     }
+     
 
     /**
      * Store a newly created resource in storage.

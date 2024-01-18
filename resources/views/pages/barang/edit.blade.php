@@ -48,7 +48,7 @@
                                     is-invalid
                                 @enderror"
                                     name="nama_barang" value="{{ $barang->nama_barang }}">
-                                @error('hari')
+                                @error('nama_barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -81,13 +81,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <button  class="btn btn-primary">Simpan</button>
-                        </div>
-                        <div class="card-footer text-left">
-                            <a href="{{ route('barang.index') }}"
-                            <button class="btn btn-primary">Kembali ke menu utama</button>
-                        </a>
+                        <div class=" d-flex card-footer">
+                            <a href="{{ route('barang.index') }}" class="btn btn-primary mr-auto">Kembali Ke Menu Utama</a>
+                            <button class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
